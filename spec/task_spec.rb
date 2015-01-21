@@ -30,7 +30,7 @@ describe(Task) do
   end
 
   describe("#save") do
-    it("saves a task to a list") do
+    it("saves a task to the task database") do
       test_task = Task.new({:do_it => "dishes"})
       test_task.save()
       expect(Task.all()).to(eq([test_task]))

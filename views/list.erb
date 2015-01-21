@@ -1,0 +1,15 @@
+<h1>Here's what you gotta do for your <%= @list.name() %> list</h1>
+
+<ul>
+  <% @list.tasks().each() do |task| %>
+    <li><%= task.do_it() %></li>
+  <% end %>
+</ul>
+
+<form action="/add_task" method="post">
+  <label for="do_it">Enter new task:</label>
+  <input type="text" name="do_it">
+  <input type="hidden" name="name" value="<%= @list.name() %>">
+
+  <button type = "submit">Add</button>
+</form>

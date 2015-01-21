@@ -1,0 +1,18 @@
+<h1>Welcome to the one list to rule them all!</h1>
+
+<h3>Add a new to do list</h3>
+<form action="/add_list" method="post">
+  <input name="name" type="text" placeholder="e.g. chores">
+  <button type="submit">Add</button>
+</form>
+
+<% if @lists.any?() %>
+  <p>Click on a list to see what you gotta do</p>
+  <ul>
+    <% @lists.each() do |list| %>
+      <li><a href="/list/<%= list.name() %>"><%= list.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There ain't no lists here yet, you guys.</p>
+<% end %>

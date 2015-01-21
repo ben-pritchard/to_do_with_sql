@@ -49,17 +49,35 @@ describe(List) do
     end
   end
 
-  # describe("#tasks") do
-  #
-  # end
-  #
-  # describe("#add_task") do
-  #   it("adds a task to a list") do
-  #     test_list = List.new({:name => "chores", :id => nil})
-  #     test_list.save()
-  #     test_task = Task.new({:do_it => "dishes", :due => nil, :list_id => nil})
-  #     test_list.add_task(test_task)
-  #   end
-  # end
+  describe(".search") do
+    it("finds a list based on the name attribute") do
+      test_list = List.new({:name => "chores"})
+      test_list.save()
+      test_list2 = List.new({:name => "homework"})
+      test_list2.save()
+      expect(List.search("homework")).to(eq(test_list2))
+    end
+  end
+
+  describe("#tasks") do
+    it("displays all tasks in a list--empty at first") do
+      test_list = List.new({:name => "chores"})
+      test_list.save()
+      expect(test_list.tasks()).to(eq([]))
+    end
+  end
+
+  describe("#add_task") do
+    it("adds a new task to a specific list") do
+      test_list = List.new({:name => "chores"})
+      test_list.save()
+      test_task = Task.new({:do_it => "dishes", :list_id => test_list.id()})
+      test_task.save()
+      test_list.add_task(test_task)
+      expect(test_list.tasks()).to(eq([test_task]))
+    end
+  end
+
+
 
 end
